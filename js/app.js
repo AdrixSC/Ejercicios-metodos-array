@@ -7,19 +7,23 @@
  *el mismo string con todas sus letras en mayusculas
  * ejem: capitalize("whoop") --->  "WHOOP" */
 
-var capitalize = function(str) {
+/*var capitalize = function(str) {
   //Escribe tu codigo aqui
   // No puedes utilizar directamente sobre str toUpperCase
   /*var mayus = capitalize.map(function(str){
     return capitalize;
-  })*/
+  })
+};*/
 
-
-}
-var string = ["whoop"]
+const capitalize = str => {
+  const array = str.split(``);
+  const newArray = array.map(item => item.toUpperCase());
+  let newStr = newArray.join(``);
+  return newStr;
+};
 
 //Utiliza console.log() para visualizar el funcionamiento de tu código.
-var outputCapitalize = capitalize(string)
+var outputCapitalize = capitalize("whoop")
 console.log(outputCapitalize); //----> "WHOOP";
 
 
@@ -29,10 +33,21 @@ console.log(outputCapitalize); //----> "WHOOP";
   ejem: swapCase('hey gurl, lets javascript together sometime') ---> "HEY gurl, LETS javascript TOGETHER sometime"
   NOTA: Debes hacer uso de la funcion capitalize();*/
 
-var swapCase = function(str) {
+/*var swapCase = function(str) {
   // Escribe tu codigo aquí
+}*/
 
-}
+const swapCase = str => {
+  const array = str.split(``);
+  const newArray = array.map((item, index) => {
+    if(index % 2 === 0){
+      return capitalize(item);
+    } else {
+      return item;
+    }
+  });
+  return array.join(``);
+};
 
 var outputSwapCase = swapCase("hey gurl, lets javascript together sometime")
 console.log(outputSwapCase); //---> "HEY gurl, LETS javascript TOGETHER sometime"
@@ -59,7 +74,7 @@ console.log(outputShiftLetters); // ---> 'ifmmp'
 //Manipula el siguiente array y devuelve un nuevo array que contenga solo a los números pares
 // ejem. evenNumber([1,2,3,4,5,6,7,8,9,10]) ---> [2, 4, 6, 8, 10]
 
-var numberArray = [1,2,3,4,5,6,7,8,9,10];
+/*var numberArray = [1,2,3,4,5,6,7,8,9,10];
 
 var evenNumbers = function(array) {
   //Escribe tu codigo aquí.filter
@@ -68,7 +83,16 @@ var evenNumbers = function(array) {
     return item % 2 == 0;
   })
   return newArray;
+};*/
+
+//Arrow Function
+const numberArray = [1,2,3,4,5,6,7,8,9,10];
+
+const evenNumbers = array => {
+  const newArray = array.filter(item => item % 2 == 0)
+  return newArray;
 };
+
 
 var outputEvenNumbers = evenNumbers(numberArray);
 console.log(outputEvenNumbers); // ---> [2, 4, 6, 8, 10]
@@ -78,11 +102,17 @@ console.log(outputEvenNumbers); // ---> [2, 4, 6, 8, 10]
 //Ahora  manipulando el mismo array devuelve un nuevo array que contenga solo a los números impares.
 // ejem. oddNumbers([1,2,3,4,5,6,7,8,9,10]) ---> [1, 3, 5, 7, 9]
 
-var oddNumbers = function(array) {
+/*var oddNumbers = function(array) {
   //Escribe tu codigo aquí,filter
   var newArray = array.filter(function(item){
     return item % 2 !== 0;
   })
+  return newArray;
+};*/
+
+//Arrow Function
+const oddNumbers = array => {
+  const newArray = array.filter(item => item % 2 !== 0)
   return newArray;
 };
 
@@ -98,7 +128,7 @@ console.log(outputOddNumbers); // ---> [1, 3, 5, 7, 9]
 
 Nota: Debes de hacer uso de las funciones de evenNumbers() y oddNumbers.*/
 
-var reducer = function(array) {
+/*var reducer = function(array) {
   //Escribe tu codigo aquí
   var sumEven = evenNumbers(array).reduce(function(valorAnterior, valorInicial){
     return valorAnterior + valorInicial;
@@ -107,8 +137,14 @@ var reducer = function(array) {
     return valorAnterior + valorInicial;
   });
   return [sumEven,sumOdd]
-console.log(sumEven,sumOdd);
-}
+};*/
+
+const reducer = array => {
+  let sumEven = evenNumbers(array).reduce((valorAnterior, valorInicial) => valorAnterior + valorInicial)
+
+let sumOdd = oddNumbers(array).reduce((valorAnterior, valorInicial) => valorAnterior + valorInicial)
+return [sumEven,sumOdd]
+};
 
 var outputReducer = reducer([1,2,3,4,5,6,7,8,9]);
 console.log(outputReducer); // ---> [ 20, 25 ]
@@ -152,24 +188,24 @@ var outputsPersonsFiltered = personsFiltered(persons);
 
 var paintPersons = function(array) {
   //paintPersons.forEach(persons)
-
+  var container = document.getElementById("container");
+  persons.forEach(function(elemento){
+    var person = document.createElement("div");
+    var name = document.createElement("h3");
+    var id = document.createElement("p");
+    var tags = document.createElement("p");
+    name.innerText = elemento.name;
+    id.innerText = elemento.id;
+    tags.innerText = elemento.tags;
+    person.appendChild(name);
+    person.appendChild(id);
+    person.appendChild(tags);
+    container.appendChild(person);
+  })
 }
-/*var container = document.getElementById("container");
-persons.forEach(function(elemento){
-  var person = document.createElement("div");
-  var name = document.createElement("h3");
-  var id = document.createElement("p");
-  var tags = document.createElement("p");
-  name.innerText = item.name;
-  id.innerText = item.id;
-  tags.innerText = item.tags;
-  person.appendChild(name);
-  person.appendChild(id);
-  person.appendChild(tags);
-  person.appendChild(container);
-})*/
+/**/
 var outputPaintPerson = paintPersons(persons);
-console.log(outputPaintPerson);
+//console.log(outputPaintPerson);
 
 // 9. Total de edad en 'años perro'
 /*Considera la siguiente variables data. Nosotros tenmos un arreglo de objetos, cada objeto representa

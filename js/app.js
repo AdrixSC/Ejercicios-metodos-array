@@ -104,7 +104,8 @@ console.log(outputEvenNumbers); // ---> [2, 4, 6, 8, 10]
 
 /*var oddNumbers = function(array) {
   //Escribe tu codigo aquí,filter
-  var newArray = array.filter(function(item){
+  var newArra
+  y = array.filter(function(item){
     return item % 2 !== 0;
   })
   return newArray;
@@ -240,6 +241,24 @@ var data = [
     type: 'dog'
   },
 ];
+
+/*const dogs = array => {
+//console.log(array);
+ let arrayFilterDog = array.filter( elemento => {return elemento.type === "dog"});
+ //console.log(arrayFilterDog);
+ const ageDogs = arrayFilterDog.map(item => {return item.age * 7});
+ //console.log(ageDogs)
+ const sumAgeDogs = ageDogs.reduce( (valorAnterior, valorInicial) => {return valorAnterior + valorInicial});
+ console.log(sumAgeDogs)
+};*/
+//misma funcion pero concatenando metodos
+const dogs = array => {
+ let arrayFilterDog = array.filter( elemento => elemento.type === "dog").map(item => item.age * 7).reduce( (valorAnterior, valorInicial) => valorAnterior + valorInicial);
+ console.log(arrayFilterDog);
+ return arrayFilterDog
+};
+
+dogs(data);
 
 // 10. Render in DOM
 /*Usando la data anterior y alguno de los métodos, pinta en el index.html a través del DOM
